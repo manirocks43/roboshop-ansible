@@ -3,11 +3,6 @@
     name: nginx
     state: installed
 
-- name: Start nginx service
-  ansible.builtin.systemd:
-    state: started
-    name: nginx
-
 - name: Removing old web content
   ansible.builtin.file:
     path: /usr/share/nginx/html
@@ -30,26 +25,18 @@
     src: roboshop.conf
     dest: /etc/nginx/default.d/roboshop.conf
 
+- name: Restart nginx service
+  ansible.builtin.systemd:
+    state: ewstarted
+    name: nginx
+    enabled: yes
 
-#  cd /usr/share/nginx/html
 
-  
-#  echo "Extracting WebContent"
-#  unzip /tmp/frontend.zip &>>$LOG_FILE
-#  StatusCheck $?
-  
-#  mv frontend-main/static/* .
-#  mv frontend-main/localhost.conf /etc/nginx/default.d/roboshop.conf
-  
+
 #  echo "update Roboshop Config file"
 #  for component in catalogue user cart shipping payment ; do
 #  sed -i -e "/$component/ s/localhost/$component.roboshop.internal" /etc/nginx/default.d/roboshop.conf &>>$LOG_FILE
 #  done
   
 #  sed -i -e '/catalogue/ s/localhost/catalogue.roboshop.internal/' -e '/user/ s/localhost/user.roboshop.internal/' -e '/cart/ s/localhost/cart.roboshop.internal/' -e '/shipping/ s/localhost/shipping.roboshop.internal/' -e '/payment/ s/localhost/payment.roboshop.internal/' /etc/nginx/default.d/roboshop.conf &>>$LOG_FILE
-#  StatusCheck $?
-  
-#  echo "Starting Nginx service"
-#  systemctl enable nginx &>>$LOG_FILE
-#  systemctl restart nginx &>>$LOG_FILE
 #  StatusCheck $?
