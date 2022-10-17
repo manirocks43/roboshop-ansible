@@ -68,5 +68,5 @@
 
 - name: Load User Schema file
   community.mongodb.mongodb_shell:
-    file: "/tmp/mongodb-main/user.js"
+    file: "/tmp/mongodb-main/users.js"
     idempotent: yes
