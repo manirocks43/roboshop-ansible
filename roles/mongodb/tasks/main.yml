@@ -35,7 +35,7 @@
 
 - name: Setup MongoDB Repo
   ansible.builtin.copy:
-    sec: mongo.repo
+    src: mongo.repo
     dest: /etc/yum.repos.d/mongodb.repo
 
 - name: Install MongoDB package
