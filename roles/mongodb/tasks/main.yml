@@ -34,7 +34,7 @@
 #StatusCheck $?
 
 - name: Setup MongoDB Repo
-  ansible.builtin.repo:
+  ansible.builtin.copy:
     sec: mongo.repo
     dest: /etc/yum.repos.d/mongodb.repo
 
