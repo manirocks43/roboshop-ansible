@@ -2,6 +2,3 @@
   ansible.builtin.import_role:
     name: common
     tasks_from: nodejs
-
-- name: Import App Pre-red task file
-  ansible.builtin.import_tasks: app-prereq.yml
