@@ -1,0 +1,42 @@
+#  APP_PREREQ() {
+#    id roboshop &>>$LOG_FILE
+#    if [ $? -ne 0 ] ; then
+#    echo "Adding roboshop user"
+#    useradd roboshop &>>$LOG_FILE
+#    StatusCheck $?
+#    fi
+#
+#    echo "downloading $COMPONENT application"
+#    curl -s -L -o /tmp/$COMPONENT.zip "https://github.com/roboshop-devops-project/$COMPONENT/archive/main.zip" &>>$LOG_FILE
+#    StatusCheck $?
+#
+#    echo "Cleaning old content"
+#    cd /home/roboshop && rm -rf $COMPONENT &>>$LOG_FILE
+#    StatusCheck $?
+#
+#    echo "extracting $COMPONENT application"
+#    unzip /tmp/$COMPONENT.zip &>>$LOG_FILE
+#    StatusCheck $?
+#
+#    mv $COMPONENT-main $COMPONENT && cd /home/roboshop/$COMPONENT
+
+- name: Add Roboshop Application User
+  ansible.builtin.user:
+    name: roboshop
+
+- name: Cleaning old App content
+  ansible.builtin.file:
+    path: /home/roboshop/{{COMPONENT}}
+    state: absent
+
+- name: Download and Extract Application content
+  ansible.builtin.unarchive:
+    src: https://github.com/roboshop-devops-project/{{COMPONENT}}/archive/main.zip
+    dest: /tmp
+    remote_src: yes
+
+- name: Copy extracted content
+  ansible.builtin.copy:
+    src: /tmp/catalogue-main/
+    dest: /home/roboshop/{{COMPONENT}}/
+    remote_src: yes

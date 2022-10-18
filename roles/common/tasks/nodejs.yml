@@ -1,0 +1,26 @@
+#  NODEJS() {
+#    echo "setup nodejs repo"
+#    curl -sL https://rpm.nodesource.com/setup_lts.x | bash &>>$LOG_FILE
+#    StatusCheck $?
+#
+#    echo "installing nodejs repo"
+#    yum install nodejs -y &>>$LOG_FILE
+#    StatusCheck $?
+#
+#    APP_PREREQ
+#
+#    echo "installing nodejs dependencies"
+#    npm install &>>$LOG_FILE
+#    StatusCheck $?
+#
+#    SYSTEMD_SETUP
+#  }
+
+- name: setup nodejs repo
+  ansible.builtin.shell: https://rpm.nodesource.com/setup_lts.x |bash
+
+- name: Install NodeJS
+  ansible.builtin.yum:
+    name: nodejs
+    state: installed
+
