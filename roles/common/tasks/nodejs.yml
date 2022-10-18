@@ -26,3 +26,7 @@
 
 - name: Import App Pre-red task file
   ansible.builtin.import_tasks: app-prereq.yml
+
+- name: Installing nodejs dependencies
+  community.general.npm:
+    path: /home/roboshop/{{COMPONENT}}
