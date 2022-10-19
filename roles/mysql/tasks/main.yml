@@ -69,3 +69,9 @@
     name: mysql-community-server
     state: installed
 
+- name: Start MySQL Service
+  ansible.builtin.systemd:
+    name: mysqld
+    state: started
+    enabled: yes
+
