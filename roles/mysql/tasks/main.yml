@@ -77,7 +77,7 @@
 
 - name: Load the file
   ansible.builtin.slurp:
-    src: /var/log/mysqld.out
+    src: /var/log/mysqld.log
   register: out
 
 - name: Print out
