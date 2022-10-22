@@ -99,7 +99,7 @@
   register: mysql_conn_status
 
 - name: Copy SQL file to reset password
-  ansible.builtin.copy:
+  ansible.builtin.template:
     src: reset-root-password.sql
     dest: /tmp/reset-root-password.sql
   when: mysql_conn_status is failed
