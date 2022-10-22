@@ -8,6 +8,8 @@
 
 - name: Installing Maven dependencies
   ansible.builtin.shell: mvn clean package && mv target/{{COMPONENT}}-1.0.jar {{COMPONENT}}.jar
+  args:
+    chdir: /home/roboshop/{{COMPONENT}}
   become_user: roboshop
 
 - name: Import Systemd task file
