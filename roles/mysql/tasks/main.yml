@@ -108,7 +108,7 @@
   ansible.builtin.shell: mysql --connect-expired-password -uroot -p"{{ out['content'] | b64decode | regex_findall ( 'temporary password.*' ) | join ( '' ) | split(' ') | last }}" </tmp/reset-root-password.sql
   when: mysql_conn_status is failed
 
-- name: Check MYSQL Validate Plugin
+- name: Check MYSQL Password Validate Plugin
   community.mysql.mysql_query:
     query: 'show plugins'
     login_user: root
@@ -119,3 +119,10 @@
 - name: print
   debug:
     msg: "{{plugins_status | regex_findall ( 'validate_password' ) | length}}"
+
+- name: Uninstall Password Validate Plugin
+  community.mysql.mysql_query:
+    query: 'uninstall plugin validate_password;'
+    login_user: root
+    login_password: "{{ROBOSHOP_MYSQL_PASSWORD}}"
+  when: plugins_status | regex_findall ( 'validate_password' ) | length > 0
