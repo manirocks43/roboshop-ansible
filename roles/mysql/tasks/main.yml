@@ -118,4 +118,4 @@
 
 - name: print
   debug:
-    msg: "{{plugins_ststus}}"
+    msg: "{{plugins_status}}"
