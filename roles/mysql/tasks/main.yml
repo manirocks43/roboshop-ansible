@@ -86,7 +86,7 @@
   register: out
 
 - name: Install mysql client pip3
-  ansible.builtin.pip3:
+  ansible.builtin.pip:
     name: mysqlclient
     executable: pip3
 
