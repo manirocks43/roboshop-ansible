@@ -1,25 +1,3 @@
-#  PYTHON () {
-#    echo "installing python3"
-#    yum install python36 gcc python3-devel -y &>>$LOG_FILE
-#    StatusCheck $?
-#
-#    APP_PREREQ
-#
-#    cd /home/roboshop/payment
-#
-#    echo "installing Python dependencies"
-#    pip3 install -r requirements.txt &>>$LOG_FILE
-#    StatusCheck $?
-#
-#    APP_UID=$(id -u roboshop)
-#    APP_GID=$(id -g roboshop)
-#
-#    sed -i -e "/uid/ c uid = $APP_UID" -e "/gid/ c gid = $APP_GID" /home/roboshop/$COMPONENT/$COMPONENT.ini &>>$LOG_FILE
-#
-#    SYSTEMD_SETUP
-#
-#  }
-
 - name: Installing Python
   ansible.builtin.yum:
     name:
