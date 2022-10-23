@@ -38,7 +38,7 @@
 
 - name: Install Erlang and RabbitMQ
   ansible.builtin.yum:
-    name: "{{item}}"
+    name: "{{ item }}"
     state: installed
     disable_gpg_check: yes
   loop:
