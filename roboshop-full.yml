@@ -1,50 +1,60 @@
 - name: Frontend Setup
   hosts: FRONTEND
+  become: true
   roles:
     - frontend
 
 - name: Redis Setup
   hosts: REDIS
+  become: true
   roles:
     - redis
 
 - name: Mongodb Setup
   hosts: MONGODB
+  become: true
   roles:
     - mongodb
 
 - name: Catalogue Setup
   hosts: CATALOGUE
+  become: true
   roles:
     - catalogue
 
 - name: Cart Setup
   hosts: CART
+  become: true
   roles:
     - cart
 
 - name: User Setup
   hosts: USER
+  become: true
   roles:
     - user
 
 - name: Mysql Setup
   hosts: MYSQL
+  become: true
   roles:
     - mysql
 
 - name: Shipping Setup
   hosts: SHIPPING
+  become: true
   roles:
     - shipping
 
 - name: Rabbitmq Setup
   hosts: RABBITMQ
+  become: true
   roles:
     - rabbitmq
 
 - name: Payment Setup
   hosts: PAYMENT
+  become: true
   roles:
     - payment
 
