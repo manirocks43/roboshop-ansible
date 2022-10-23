@@ -34,10 +34,7 @@
 #StatusCheck $?
 
 - name: Setup RabbitMQ repos
-  ansible.builtin.shell: "{{item}}"
-  loop:
-  - curl -s https://packagecloud.io/install/repositories/rabbitmq/rabbitmq-server/script.rpm.sh | bash
-  - curl -s https://packagecloud.io/install/repositories/rabbitmq/erlang/script.rpm.sh | sudo bash
+  ansible.builtin.shell: curl -s https://packagecloud.io/install/repositories/rabbitmq/rabbitmq-server/script.rpm.sh | bash
 
 - name: Install Erlang and RabbitMQ
   ansible.builtin.dnf:
@@ -45,7 +42,6 @@
     state: installed
     disable_gpg_check: yes
   loop:
-    - erlang
     - https://github.com/rabbitmq/erlang-rpm/releases/download/v23.2.6/erlang-23.2.6-1.el7.x86_64.rpm
     - rabbitmq-server
 
