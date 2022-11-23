@@ -1,5 +1,5 @@
 - name: Create parameters
-  hosts: all
+  hosts: localhost
   tasks:
     - name: Update a parameter
       community.aws.aws_ssm_parameter_store:
