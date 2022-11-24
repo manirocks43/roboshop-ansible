@@ -5,7 +5,7 @@
       community.aws.aws_ssm_parameter_store:
         name: "{{item.name}}"
         string_type: "String"
-        value: "xyz"
+        value: "{{item.value}}"
         overwrite_value: "always"
       loop:
         - { name: "roboshop.dev.catalogue.MONGO_URL", value: "mongodb://mongodb-dev.roboshop.internal:27017/catalogue" }
